@@ -1,0 +1,13 @@
+# GitHub Pages / Jekyll configuration
+title: Pillsette
+url: "https://ideadibia.github.io"
+baseurl: "/PS"
+markdown: kramdown
+permalink: /blog/:title/
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
