@@ -1,0 +1,206 @@
+---
+layout: null
+permalink: /blog/
+title: "Pillsette Blog | Medication Habits, Routines & Insights"
+description: "Practical, evidence-informed guidance on medication routines, adherence, and building healthier habits."
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page.title | default: "Pillsette Blog" | escape }}</title>
+  <meta name="description" content="{{ page.description | escape }}">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="{{ page.url | absolute_url }}">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{{ page.title | escape }}">
+  <meta property="og:description" content="{{ page.description | escape }}">
+  <meta property="og:url" content="{{ page.url | absolute_url }}">
+  <meta name="twitter:card" content="summary">
+  <link rel="stylesheet" href="{{ '/assets/css/styles.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/blog.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/brand.css' | relative_url }}">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "Pillsette Blog",
+    "url": "{{ page.url | absolute_url }}",
+    "description": "{{ page.description | escape }}",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Pillsette",
+      "url": "{{ '/' | absolute_url }}"
+    },
+    "blogPost": [
+      {% for post in site.posts %}
+      {
+        "@type": "BlogPosting",
+        "headline": {{ post.title | jsonify }},
+        "url": {{ post.url | absolute_url | jsonify }},
+        "datePublished": "{{ post.date | date_to_xmlschema }}",
+        "description": {{ post.excerpt | strip_html | strip_newlines | jsonify }}
+      }{% unless forloop.last %},{% endunless %}
+      {% endfor %}
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="wordmark" href="{{ '/' | relative_url }}" aria-label="Pillsette home"><img class="brand-logo" src="{{ '/assets/images/pillsette-logo.svg' | relative_url }}" alt="Pillsette"></a>
+      <nav class="desktop-nav" aria-label="Main navigation">
+        <a class="active" href="{{ '/blog/' | relative_url }}" aria-current="page">Blog</a>
+        <a href="{{ '/survey/' | relative_url }}">Survey</a>
+        <a href="{{ '/about/' | relative_url }}">About</a>
+      </nav>
+      <div class="social-links" aria-label="Social media">
+        <a href="https://www.linkedin.com/company/REPLACE_ME" aria-label="LinkedIn">in</a>
+        <a href="https://www.instagram.com/REPLACE_ME" aria-label="Instagram">◎</a>
+        <a href="https://www.facebook.com/REPLACE_ME" aria-label="Facebook">f</a>
+        <a href="https://x.com/REPLACE_ME" aria-label="X">𝕏</a>
+      </div>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" hidden>
+      <a class="active" href="{{ '/blog/' | relative_url }}" aria-current="page">Blog</a>
+      <a href="{{ '/survey/' | relative_url }}">Survey</a>
+      <a href="{{ '/about/' | relative_url }}">About</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="blog-hero">
+      <div class="container blog-hero-inner">
+        <div class="blog-hero-copy">
+          <p class="eyebrow">The Pillsette journal</p>
+          <h1>Small steps toward<br class="desktop-break"> healthier medication habits.</h1>
+          <p class="blog-intro">Clear, practical insights to help make medication routines easier to understand and manage.</p>
+          <a class="text-link blog-hero-link" href="#articles">Explore the latest articles <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="blog-hero-art" aria-hidden="true">
+          <div class="blog-art-blob"></div>
+          <svg class="blog-capsule" viewBox="0 0 240 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g transform="rotate(-42 120 90)">
+              <rect x="57" y="48" width="126" height="84" rx="42" stroke="currentColor" stroke-width="3"/>
+              <path d="M120 49V131" stroke="currentColor" stroke-width="3"/>
+            </g>
+            <path d="M184 28L191 10M204 42L222 30M210 62L231 65" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <section class="container blog-main" id="articles" aria-labelledby="articles-title">
+      <div class="blog-toolbar">
+        <div>
+          <p class="eyebrow">Explore and learn</p>
+          <h2 id="articles-title">Latest articles</h2>
+        </div>
+        <form class="blog-search" role="search" id="blog-search-form">
+          <label class="visually-hidden" for="blog-search-input">Search articles</label>
+          <span aria-hidden="true">⌕</span>
+          <input id="blog-search-input" type="search" placeholder="Search articles…" autocomplete="off">
+        </form>
+      </div>
+
+      {% assign all_categories = site.posts | map: "categories" | join: "," | split: "," | uniq | sort %}
+      <div class="category-filters" aria-label="Filter articles by category">
+        <button class="filter-chip is-active" type="button" data-category="all" aria-pressed="true">All articles</button>
+        {% for category in all_categories %}
+          {% unless category == "" %}
+            <button class="filter-chip" type="button" data-category="{{ category | downcase | escape }}" aria-pressed="false">{{ category | replace: "-", " " | capitalize }}</button>
+          {% endunless %}
+        {% endfor %}
+      </div>
+
+      <div class="blog-results" id="blog-results" aria-live="polite">
+        <div class="article-grid" id="article-grid">
+          {% for post in site.posts %}
+          <article class="article-card" data-title="{{ post.title | downcase | escape }}" data-category="{{ post.categories | join: '|' | downcase | escape }}" data-description="{{ post.excerpt | strip_html | downcase | escape }}">
+            <a class="article-card-link" href="{{ post.url | relative_url }}">
+              {% if post.image %}
+                <img class="article-image" src="{{ post.image | relative_url }}" alt="{{ post.image_alt | default: post.title | escape }}" loading="lazy">
+              {% else %}
+                <div class="article-image article-image-placeholder" aria-hidden="true"><span>✳</span></div>
+              {% endif %}
+              <div class="article-card-body">
+                <div class="article-meta">
+                  {% for category in post.categories limit:1 %}
+                    <span class="article-category">{{ category | replace: "-", " " | capitalize }}</span>
+                  {% endfor %}
+                  <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %-d, %Y" }}</time>
+                </div>
+                <h3>{{ post.title | escape }}</h3>
+                <p>{{ post.excerpt | default: post.content | strip_html | normalize_whitespace | truncate: 155 | escape }}</p>
+                <span class="article-read-more">Read article <span aria-hidden="true">→</span></span>
+              </div>
+            </a>
+          </article>
+          {% endfor %}
+        </div>
+        <p class="no-articles" id="no-articles" {% if site.posts.size > 0 %}hidden{% endif %}>
+          {% if site.posts.size == 0 %}Our first articles are coming soon. Check back for practical insights and updates.{% else %}No articles match your search. Try another keyword or category.{% endif %}
+        </p>
+      </div>
+    </section>
+
+    <section class="blog-waitlist container">
+      <div>
+        <p class="eyebrow">Stay in the loop</p>
+        <h2>Want to hear what we're working on?</h2>
+        <p>Join the Pillsette waitlist for updates as we continue developing our product.</p>
+      </div>
+      <a class="outline-button" href="{{ '/subscribe/' | relative_url }}">Join the waitlist <span aria-hidden="true">→</span></a>
+    </section>
+
+    <section class="support-section container" aria-labelledby="support-title">
+      <div class="support-content">
+        <h2 id="support-title">Supported by</h2>
+        <div class="institution-list">
+          {% for institution in site.data.institutions limit:5 %}
+            <div class="institution">
+              {% if institution.logo %}
+                <img src="{{ institution.logo | relative_url }}" alt="{{ institution.name | escape }}" loading="lazy">
+              {% else %}
+                <span>{{ institution.name | escape }}</span>
+              {% endif %}
+            </div>
+          {% endfor %}
+          {% if site.data.institutions.size > 5 %}
+            <span class="more-institutions">+{{ site.data.institutions.size | minus: 5 }} more</span>
+          {% endif %}
+        </div>
+      </div>
+      <div class="support-social">
+        <h2>Follow us</h2>
+        <div class="social-links social-links-large">
+          <a href="https://www.linkedin.com/company/REPLACE_ME" aria-label="LinkedIn">in</a>
+          <a href="https://www.instagram.com/REPLACE_ME" aria-label="Instagram">◎</a>
+          <a href="https://www.facebook.com/REPLACE_ME" aria-label="Facebook">f</a>
+          <a href="https://x.com/REPLACE_ME" aria-label="X">𝕏</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <a class="wordmark" href="{{ '/' | relative_url }}"><img class="brand-logo" src="{{ '/assets/images/pillsette-logo.svg' | relative_url }}" alt="Pillsette"></a>
+      <nav aria-label="Footer navigation">
+        <a href="{{ '/blog/' | relative_url }}">Blog</a>
+        <a href="{{ '/survey/' | relative_url }}">Survey</a>
+        <a href="{{ '/about/' | relative_url }}">About</a>
+      </nav>
+      <small>© {{ site.time | date: "%Y" }} Pillsette</small>
+    </div>
+  </footer>
+  <script src="{{ '/assets/js/main.js' | relative_url }}" defer></script>
+  <script src="{{ '/assets/js/blog.js' | relative_url }}" defer></script>
+</body>
+</html>

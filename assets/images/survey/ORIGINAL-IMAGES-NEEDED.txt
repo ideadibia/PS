@@ -1,0 +1,4 @@
+The uploaded project ZIP did not include the images currently displayed on https://pillsette.com/survey.
+The redesigned page reserves three image positions in survey/index.html.
+Please copy the existing survey graphics into this folder and replace the labelled placeholders
+with image elements using the original files and accurate alt text. Do not redraw or replace them.

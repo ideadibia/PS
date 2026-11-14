@@ -1,0 +1,1 @@
+The header and footer use the official supplied vector asset: pillsette-logo.svg. Its original 4096 × 4096 canvas contained large transparent margins; the viewBox is cropped tightly around the artwork while preserving the original vector paths and brand colours.

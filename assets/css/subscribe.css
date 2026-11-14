@@ -1,0 +1,97 @@
+/* Subscribe page — uses the shared Pillsette design tokens */
+.subscribe-hero {
+  min-height: 510px;
+  display: grid;
+  grid-template-columns: 1.08fr .92fr;
+  align-items: center;
+  gap: 42px;
+  padding-block: 62px 58px;
+}
+.subscribe-copy { position: relative; z-index: 1; }
+.subscribe-copy h1 { max-width: 650px; }
+.subscribe-lead {
+  max-width: 610px;
+  margin: 22px 0 28px;
+  font-size: clamp(19px, 2vw, 24px);
+  line-height: 1.48;
+}
+.subscribe-form { max-width: 650px; }
+.privacy-note { margin: 12px 0 0 18px; color: var(--muted); font-size: 14px; }
+.subscribe-art {
+  position: relative;
+  min-height: 390px;
+  display: grid;
+  place-items: center;
+  color: var(--navy);
+  isolation: isolate;
+}
+.subscribe-blob {
+  position: absolute;
+  z-index: -1;
+  border-radius: 37% 63% 58% 42% / 45% 42% 58% 55%;
+  background: linear-gradient(145deg, #F9EEDB, #F6E9CC);
+}
+.subscribe-blob-one { width: min(100%, 440px); aspect-ratio: 1.05; transform: rotate(-9deg); }
+.subscribe-blob-two { width: 72%; aspect-ratio: 1; background: rgba(224,214,255,.42); transform: rotate(13deg); }
+.subscribe-capsule { width: min(72%, 300px); filter: drop-shadow(0 8px 12px rgba(56,32,213,.05)); }
+.subscribe-reassurance {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  padding-block: 10px 64px;
+}
+.reassurance-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 24px 18px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #FFFDF6;
+}
+.reassurance-icon {
+  flex: 0 0 42px;
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  color: var(--purple);
+  background: var(--lavender);
+  font-size: 25px;
+}
+.reassurance-item h2 { margin: 0 0 7px; font-size: 19px; line-height: 1.2; }
+.reassurance-item p { margin: 0; color: var(--muted); font-size: 15px; line-height: 1.45; }
+.subscribe-survey {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  padding: 34px 42px;
+  margin-bottom: 60px;
+  border-radius: 28px;
+  background: linear-gradient(110deg, #F6E8CC, #FBF6E3);
+}
+.subscribe-survey h2 { margin: 0 0 8px; font-size: clamp(22px, 2.5vw, 28px); }
+.subscribe-survey p { max-width: 660px; margin: 0 0 12px; font-size: 17px; line-height: 1.45; }
+.subscribe-survey .outline-button {
+  border: 1.5px solid var(--purple);
+  background: transparent;
+  color: var(--purple);
+}
+@media (max-width: 850px) {
+  .subscribe-hero { grid-template-columns: 1fr .75fr; gap: 16px; min-height: 440px; }
+  .subscribe-art { min-height: 300px; }
+  .subscribe-reassurance { gap: 12px; }
+  .reassurance-item { padding: 18px 14px; flex-direction: column; }
+}
+@media (max-width: 640px) {
+  .subscribe-hero { grid-template-columns: 1fr; padding-block: 48px 30px; }
+  .subscribe-art { min-height: 230px; order: -1; }
+  .subscribe-blob-one { width: 250px; }
+  .subscribe-blob-two { width: 185px; }
+  .subscribe-capsule { width: 190px; }
+  .subscribe-reassurance { grid-template-columns: 1fr; padding-bottom: 38px; }
+  .reassurance-item { flex-direction: row; }
+  .subscribe-survey { align-items: flex-start; flex-direction: column; padding: 26px 22px; margin-bottom: 40px; }
+}
